@@ -1,7 +1,7 @@
-#####################################################################
-## Packages / Devices / Tnx to Cvoid for help                      ##
-## @darkgeej - https://github.com/darkgeej                         ##
-#####################################################################
+################################################
+## Packages / Devices / Tnx to Cvoid for help ##
+## @darkgeej - https://github.com/darkgeej    ##
+################################################
 homeassistant:
 
 media_player:
@@ -14,9 +14,11 @@ mqtt:
   password: !secret mqttpass
   keepalive: 60
 
-# Thermostat #
 tado:
   username: !secret tadouser
   password: !secret tadopass
 
-
+remote:
+  - platform: broadlink
+    host: 172.16.5.147
+    mac: c8:f7:42:16:a1:81

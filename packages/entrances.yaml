@@ -1,7 +1,7 @@
-#####################################################################
-## Packages / Entrance / Tnx to Cvoid for help                     ##
-## @darkgeej - https://github.com/darkgeej                         ##
-#####################################################################
+#################################################
+## Packages / Entrance / Tnx to Cvoid for help ##
+## @darkgeej - https://github.com/darkgeej     ##
+#################################################
 homeassistant:
   customize:
 
@@ -51,3 +51,38 @@ switch:
     retain: true
 
 
+##############
+# Automation #
+##############
+automation:
+
+  - alias: Tænd lyset i gangene 
+    trigger:
+      platform: numeric_state
+      entity_id: sensor.lux_livingroom
+      below: 120
+    action:
+      - service: homeassistant.turn_on
+        entity_id:
+          - switch.littlehall_lamp
+      - service: light.turn_on
+        data: 
+          entity_id:
+            - light.gangen
+          brightness: 140
+
+
+  - alias: Sluk lyset i gangene
+    trigger:
+      platform: numeric_state
+      entity_id: sensor.lux_livingroom
+      above: 120
+    action:
+      - service: homeassistant.turn_off
+        entity_id:
+          - switch.littlehall_lamp
+      - service: light.turn_off
+        data:
+          entity_id:
+            - light.gangen
+          brightness: 140
