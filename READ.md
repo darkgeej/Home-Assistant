@@ -49,5 +49,3 @@
 <h2>Special tnx to</h2>
 <hr />
 <p>Cvoid (That german guyyyy)<br />my Has/Espeasy Wiz,and for getting me started with HAS and learning how to use my Nodemcu with ESP Easy -&nbsp;<a href="https://github.com/bl0rp">https://github.com/bl0rp</a></p>
-
-
