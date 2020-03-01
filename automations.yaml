@@ -1,0 +1,103 @@
+- id: '1582831139612'
+  alias: Tænd lyset i lille gang
+  description: ''
+  trigger:
+  - entity_id: sensor.lux_livingroom
+    from: '0'
+    platform: state
+    to: '120'
+  condition: []
+  action:
+  - device_id: 153807c9d62c4af28e366be557033127
+    domain: light
+    entity_id: light.paeren_lillegang
+    type: turn_on
+- id: '1582831780787'
+  alias: Tænd lyset ved hoveddøren
+  description: ''
+  trigger:
+  - entity_id: sensor.lux_livingroom
+    from: '0'
+    platform: state
+    to: '120'
+  condition: []
+  action:
+  - device_id: 0d7b764131f4407eb3ca2556710036b5
+    domain: light
+    entity_id: light.gangen
+    type: turn_on
+- id: '1582831854604'
+  alias: Sluk lyset ved hoveddøren
+  description: ''
+  trigger:
+  - entity_id: sensor.lux_livingroom
+    from: '121'
+    platform: state
+    to: '90000'
+  condition: []
+  action:
+  - device_id: 0d7b764131f4407eb3ca2556710036b5
+    domain: light
+    entity_id: light.gangen
+    type: turn_off
+- id: '1582831904202'
+  alias: Sluk lyset i den lillegang
+  description: ''
+  trigger:
+  - entity_id: sensor.lux_livingroom
+    from: '121'
+    platform: state
+  condition: []
+  action:
+  - device_id: 153807c9d62c4af28e366be557033127
+    domain: light
+    entity_id: light.paeren_lillegang
+    type: turn_off
+- id: '1582833171973'
+  alias: Sluk Eds lampe kl 22:30
+  description: ''
+  trigger:
+  - at: '22:30'
+    platform: time
+  condition: []
+  action:
+  - device_id: 29df994eecf341dd8daa82a9c39c2b86
+    domain: light
+    entity_id: light.eds_sengelampe
+    type: turn_off
+- id: '1582833255321'
+  alias: Sluk Bettes lampe kl 22:30
+  description: ''
+  trigger:
+  - at: '22:30'
+    platform: time
+  condition: []
+  action:
+  - device_id: 8a195bdb377d4834aee9750c326d472c
+    domain: light
+    entity_id: light.betts_nat_lampe
+    type: turn_off
+- id: '1582833331483'
+  alias: Tænd Eds lampe kl 20:00
+  description: ''
+  trigger:
+  - at: '20:00'
+    platform: time
+  condition: []
+  action:
+  - device_id: 29df994eecf341dd8daa82a9c39c2b86
+    domain: light
+    entity_id: light.eds_sengelampe
+    type: turn_on
+- id: '1582833571428'
+  alias: Tænd Bettes lampe kl 20:00
+  description: ''
+  trigger:
+  - at: '20:00'
+    platform: time
+  condition: []
+  action:
+  - device_id: 8a195bdb377d4834aee9750c326d472c
+    domain: light
+    entity_id: light.betts_nat_lampe
+    type: turn_on

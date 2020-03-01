@@ -1,0 +1,3 @@
+resources:
+  - url: /local/mini-graph-card-bundle.js
+    type: module
