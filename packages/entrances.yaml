@@ -1,0 +1,53 @@
+#####################################################################
+## Packages / Entrance / Tnx to Cvoid for help                     ##
+## @darkgeej - https://github.com/darkgeej                         ##
+#####################################################################
+homeassistant:
+  customize:
+
+    sensor.Temperature_littlehall:
+      icon: mdi:temperature-celsius       
+      friendly_name: Temperatur i stuen
+
+    sensor.Humidity_littlehall:
+      icon: mdi:water-percent
+      friendly_name: Fugt i stuen
+
+    switch.littlehall_lamp:
+      icon: mdi:lightbulb
+      friendly_name: Lampe i lille gang
+
+
+##########
+# Sensor #
+##########
+sensor:
+
+  - platform: mqtt
+    name: "Temperature_littlehall"
+    state_topic: "esp_littlehall/dht_littlehall/Temperature"
+    qos: 0
+    unit_of_measurement: "°C"
+
+  - platform: mqtt
+    name: "Humidity_littlehall"
+    state_topic: "esp_littlehall/dht_littlehall/Humidity"
+    qos: 0
+    unit_of_measurement: "°C"
+
+
+##########
+# Switch #
+##########
+switch:
+  - platform: mqtt
+    name: "littlehall_lamp"
+    state_topic: "esp_littlehall/lamp_littlehall/gpio/12"
+    command_topic: "esp_littlehall/lamp_littlehall/gpio/12"
+    payload_on: "1"
+    payload_off: "0"
+    optimistic: false
+    qos: 0
+    retain: true
+
+

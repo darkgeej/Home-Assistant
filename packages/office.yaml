@@ -1,0 +1,67 @@
+####################################################################
+## Packages / Office / Tnx to Cvoid for help                      ##
+## @darkgeej - https://github.com/darkgeej                        ##
+####################################################################
+homeassistant:
+  customize:
+
+    switch.office_stereo:
+      icon: mdi:lightbulb
+      friendly_name: Stereo anlæg
+
+    switch.office_minidisc:
+      icon: mdi:lightbulb   
+      friendly_name: Minidisc
+
+    switch.office_cd:
+      icon: mdi:lightbulb   
+      friendly_name: Cd afspiller
+
+    switch.office_lp:
+      icon: mdi:lightbulb   
+      friendly_name: Lp afspiller
+
+
+##########
+# Switch #
+##########
+switch:
+  - platform: mqtt
+    name: "office_stereo"
+    state_topic: "esp_office/stereo/gpio/14"
+    command_topic: "esp_office/stereo/gpio/14"
+    payload_on: "1"
+    payload_off: "0"
+    optimistic: false
+    qos: 0
+    retain: true
+
+  - platform: mqtt
+    name: "office_minidisc"
+    state_topic: "esp_office/minidisc/gpio/12"
+    command_topic: "esp_office/minidisc/gpio/12"
+    payload_on: "1"
+    payload_off: "0"
+    optimistic: false
+    qos: 0
+    retain: true
+
+  - platform: mqtt
+    name: "office_cd"
+    state_topic: "esp_office/cd/gpio/13"
+    command_topic: "esp_office/cd/gpio/13"
+    payload_on: "1"
+    payload_off: "0"
+    optimistic: false
+    qos: 0
+    retain: true
+
+  - platform: mqtt
+    name: "office_lp"
+    state_topic: "esp_office/lp/gpio/15"
+    command_topic: "esp_office/lp/gpio/15"
+    payload_on: "1"
+    payload_off: "0"
+    optimistic: false
+    qos: 0
+    retain: true

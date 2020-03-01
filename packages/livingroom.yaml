@@ -1,0 +1,41 @@
+#########################€€€€€€#########################################
+## Packages / Living room / Tnx to Cvoid for help                     ##
+## @darkgeej - https://github.com/darkgeej                            ##
+###################################################€€€€€€###############
+homeassistant:
+  customize:
+
+    sensor.Temperatur_livingroom:
+      icon: mdi:temperature-celsius       
+      friendly_name: Temperatur på stuen altanen
+
+    sensor.Humidity_livingroom:
+      icon: mdi:water-percent
+      friendly_name: Fugt på stuen altanen
+
+    sensor.Lux_livingroom:
+      icon: mdi:white-balance-sunny
+      friendly_name: Lux i stuen
+
+##########
+# Sensor #
+##########
+sensor:
+
+  - platform: mqtt
+    name: "Temperatur_livingroom"
+    state_topic: "esp_livingroom/dht1/Temperature"
+    qos: 0
+    unit_of_measurement: "°C"
+
+  - platform: mqtt
+    name: "Humidity_livingroom"
+    state_topic: "esp_livingroom/dht1/Humidity"
+    qos: 0
+    unit_of_measurement: "°C"
+
+  - platform: mqtt
+    name: "Lux_livingroom"
+    state_topic: "esp_livingroom/lys_altanen/Lux"
+    qos: 0
+    unit_of_measurement: "Lux"

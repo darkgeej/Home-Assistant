@@ -1,0 +1,35 @@
+#################################################
+## Packages / Software / Tnx to Cvoid for help ##
+## @darkgeej - https://github.com/darkgeej     ##
+#################################################
+homeassistant:
+
+sensor:
+  - platform: netdata
+    resources:
+      system_load:
+        data_group: system.load
+        element: load15
+      core0_freq:
+        data_group: 'cpu.cpufreq'
+        element: 'cpu0'
+        icon: mdi:chip
+
+  - platform: moon
+
+# Stats for Unraid
+  - platform: systemmonitor
+    resources:
+      - type: memory_use
+      - type: memory_free
+      - type: processor_use
+      - type: last_boot
+
+pi_hole:
+  - host: 172.16.5.227
+    api_key: da6d38668c4d1a8aa05deaf8802d59213dedf9455819ea9d6f0a1f5ded291e36
+
+recorder:
+  purge_keep_days: 5
+  db_url: !secret recorder_db_url
+
