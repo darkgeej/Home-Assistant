@@ -1,8 +1,7 @@
-
-#################################################
-## Packages / Entrance / Tnx to Cvoid for help ##
-## @darkgeej - https://github.com/darkgeej     ##
-#################################################
+#####################€€#############################################
+## Packages / Bedroom / Tnx to Cvoid for help                     ##
+## @darkgeej - https://github.com/darkgeej/                       ##
+####################################################################
 homeassistant:
 
 
@@ -27,3 +26,127 @@ script:
           entity_id: remote.broadlink
           device: television
           command: Turn off
+
+
+######################################
+### Automation light sun up / down ###
+######################################
+automation:
+
+# Eds sengebord lys
+
+  - alias: "Turn down lights at 19:45"
+    initial_state: True
+    trigger:
+      platform: time
+      at: '19:45:00'
+    action:
+      - service: light.turn_on
+        entity_id: light.eds_sengelampe
+        data:
+          brightness: 250
+          transition: 7
+
+  - alias: "Turn down lights at 22:00"
+    initial_state: True
+    trigger:
+      platform: time
+      at: '22:00:00'
+
+    condition:
+      condition: template
+      value_template: "{{ states.light.light.light.eds_sengelampe.attributes.brightness == 206 and states.light.light.eds_sengelampe.attributes.rgb_color == (50, 0, 0) }}"
+
+    action:
+      - service: light.turn_on
+        entity_id: light.eds_sengelampe
+        data:
+          brightness: 50
+          transition: 7
+
+  - alias: "Turn down lights at 22:30"
+    initial_state: True
+    trigger:
+      platform: time
+      at: '22:30:00'
+
+    condition:
+      condition: template
+      value_template: "{{ states.light.light.eds_sengelampe.attributes.brightness == 206 and states.light.light.eds_sengelampe.attributes.rgb_color == (50, 0, 0) }}"
+
+    action:
+      - service: light.turn_on
+        data:
+          entity_id: light.eds_sengelampe
+          brightness: 5
+          transition: 14
+
+  - alias: "Turn off lights at 23:00"
+    initial_state: True
+    trigger:
+      platform: time
+      at: '23:00:00'
+    action:
+      - service: light.turn_off
+        data:
+          entity_id: light.eds_sengelampe
+
+
+# Bettes sengebord lys 
+
+  - alias: "Turn down lights at 19:45"
+    initial_state: True
+    trigger:
+      platform: time
+      at: '19:45:00'
+    action:
+      - service: light.turn_on
+        entity_id: light.betts_nat_lampe
+        data:
+          brightness: 250
+          transition: 7
+
+  - alias: "Turn down lights at 22:00"
+    initial_state: True
+    trigger:
+      platform: time
+      at: '22:00:00'
+
+    condition:
+      condition: template
+      value_template: "{{ states.light.tradfri_bulb_e27_w_opal_1000lm_2.attributes.brightness == 206 and states.light.tradfri_bulb_e27_w_opal_1000lm_2.attributes.rgb_color == (50, 0, 0) }}"
+
+    action:
+      - service: light.turn_on
+        data:
+          entity_id: light.betts_nat_lampe
+          brightness: 50
+          transition: 7
+
+  - alias: "Turn down lights at 22:30"
+    initial_state: True
+    trigger:
+      platform: time
+      at: '22:30:00'
+ 
+    condition:
+      condition: template
+      value_template: "{{ states.light.tradfri_bulb_e27_w_opal_1000lm_2.attributes.brightness == 5 and states.light.tradfri_bulb_e27_w_opal_1000lm_2.attributes.rgb_color == (5, 450, 0) }}"  
+  
+    action:
+      - service: light.turn_on
+        data:
+          entity_id: light.betts_nat_lampe
+          brightness: 5
+          transition: 14
+
+  - alias: "Turn off lights at 23:00"
+    initial_state: True
+    trigger:
+      platform: time
+      at: '23:00:00'
+    action:
+      - service: light.turn_off
+        data:
+          entity_id: light.betts_nat_lampe
+

@@ -56,6 +56,8 @@ switch:
 ##############
 automation:
 
+
+#Auto turn on #
   - alias: Tænd lyset i gangene 
     trigger:
       platform: numeric_state
@@ -71,7 +73,6 @@ automation:
             - light.gangen
           brightness: 140
 
-
   - alias: Sluk lyset i gangene
     trigger:
       platform: numeric_state
@@ -86,3 +87,17 @@ automation:
           entity_id:
             - light.gangen
           brightness: 140
+
+
+# Dim light #
+  - alias: "Dim lights at 22.00"
+    initial_state: True
+    trigger:
+      platform: time
+      at: '20:00:00'
+    action:
+      - service: light.turn_on
+        entity_id: light.gangen
+        data:
+          brightness: 75
+          transition: 7
