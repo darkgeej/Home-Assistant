@@ -1,0 +1,30 @@
+
+#################################################
+## Packages / Entrance / Tnx to Cvoid for help ##
+## @darkgeej - https://github.com/darkgeej     ##
+#################################################
+homeassistant:
+#  customize:
+
+
+######################
+# Script for Sony tv #
+######################
+script:
+  turn_off_tv_1_hour:
+    sequence:
+      - delay: '01:00:00'
+      - service: remote.send_command
+        data:
+          entity_id: remote.broadlink
+          device: television
+          command: Turn off
+
+  turn_off_tv_1_12_hour:
+    sequence:
+      - delay: '01:30:10'
+      - service: remote.send_command
+        data:
+          entity_id: remote.broadlink
+          device: television
+          command: Turn off

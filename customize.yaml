@@ -1,0 +1,8 @@
+light.betts_nat_lampe:
+  friendly_name: Bettes nat lampe
+script.turn_off_tv:
+  friendly_name: Sluk Sony tv om 1 time
+script.turn_off_tv_1_hour:
+  friendly_name: Sluk Sony tv om 1 time
+script.turn_off_tv_1_12_hour:
+  friendly_name: Sluk Sony tv om 1 1/2 time
