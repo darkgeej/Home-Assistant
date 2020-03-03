@@ -22,3 +22,8 @@ remote:
   - platform: broadlink
     host: 172.16.5.147
     mac: c8:f7:42:16:a1:81
+
+vacuum:
+  - platform: xiaomi_miio
+    host: !secret xiaomihost
+    token: !secret xiaomitoken
