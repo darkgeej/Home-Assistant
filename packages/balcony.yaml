@@ -1,0 +1,42 @@
+################################################
+## Packages / Balcony / Tnx to Cvoid for help ##
+## @darkgeej - https://github.com/darkgeej    ##
+################################################
+homeassistant:
+  customize:
+
+    sensor.temperatur_dht_balcony:
+      icon: mdi:mdi:temperature-celsius
+      friendly_name: Temperatur på altanen
+
+    sensor.humidity_dht_balcony:
+      icon: mdi:mdi:water-percent
+      friendly_name: Fugt på altanen
+
+    sensor.lux_balcony:
+      icon: mdi:mdi:bulb      
+      friendly_name: Lux på altanen
+
+
+##########
+# Sensor #
+##########
+sensor:
+
+  - platform: mqtt
+    name: "Temperatur_dht_balcony"
+    state_topic: "esp_balcony/dht_balcony/Temperature"
+    qos: 0
+    unit_of_measurement: "°C"
+
+  - platform: mqtt
+    name: "Humidity_dht_balcony"
+    state_topic: "esp_balcony/dht_balcony/Humidity"
+    qos: 0
+    unit_of_measurement: "% Fugt"
+
+  - platform: mqtt
+    name: "Lux_balcony"
+    state_topic: "esp_balcony/lux_balcony/Lux"
+    qos: 0
+    unit_of_measurement: "Lux"

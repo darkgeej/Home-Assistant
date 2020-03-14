@@ -21,6 +21,23 @@ homeassistant:
       icon: mdi:lightbulb   
       friendly_name: Lp afspiller
 
+    sensor.temperatur_dht_office:
+      icon: mdi:temperature-celsius
+      friendly_name: Temperaturen i kontoret
+
+    sensor.humidity_dht_office:
+      icon: mdi:water-percent
+      friendly_name: Fugt i kontoret
+
+
+    sensor.kontor_temperature_2:
+      icon: mdi:water-percent
+      friendly_name: Temperaturen i kontoret
+
+    sensor.kontor_humidity_2:
+      icon: mdi:water-percent
+      friendly_name: Fugt i kontoret
+
 
 ##########
 # Switch #
@@ -66,5 +83,25 @@ switch:
     qos: 0
     retain: true
 
-
+###########
 # WS2812B #
+###########
+
+
+##########
+# Sensor #
+##########
+sensor:
+
+  - platform: mqtt
+    name: "Temperatur_DHT_Office"
+    state_topic: "esp_office/dht_office/Temperature"
+    qos: 0
+    unit_of_measurement: "°C"
+
+  - platform: mqtt
+    name: "Humidity_DHT_Office"
+    state_topic: "esp_office/dht_office/Humidity"
+    qos: 0
+    unit_of_measurement: "% Fugt"
+

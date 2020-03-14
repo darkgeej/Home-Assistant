@@ -1,8 +1,17 @@
-#####################€€#############################################
-## Packages / Bedroom / Tnx to Cvoid for help                     ##
-## @darkgeej - https://github.com/darkgeej/                       ##
-####################################################################
+#################################################
+## Packages / Bedroom / Tnx to Cvoid for help  ##
+## @darkgeej - https://github.com/darkgeej/    ##
+#################################################
 homeassistant:
+  customize:
+
+    sensor.sovevaerelset_temperature_2:
+      icon: mdi:temperature-celsius
+      friendly_name: Temperaturen i soveværelset
+
+    sensor.sovevaerelset_humidity_2:
+      icon: mdi:water-percent
+      friendly_name: Fugt i soveværelset
 
 
 ######################
@@ -20,7 +29,7 @@ script:
 
   turn_off_tv_1_12_hour:
     sequence:
-      - delay: '01:30:10'
+      - delay: '01:30:00'
       - service: remote.send_command
         data:
           entity_id: remote.broadlink
@@ -35,7 +44,7 @@ automation:
 
 # Eds sengebord lys
 
-  - alias: "Turn down lights at 19:45"
+  - alias: "Turn on lights at 19:45"
     initial_state: True
     trigger:
       platform: time
@@ -55,7 +64,7 @@ automation:
 
     condition:
       condition: template
-      value_template: "{{ states.light.light.light.eds_sengelampe.attributes.brightness == 206 and states.light.light.eds_sengelampe.attributes.rgb_color == (50, 0, 0) }}"
+      value_template: "{{ states.light.eds_sengelampe.attributes.brightness == 206 and states.light.eds_sengelampe.attributes.rgb_color == (50, 0, 0) }}"
 
     action:
       - service: light.turn_on
@@ -72,7 +81,7 @@ automation:
 
     condition:
       condition: template
-      value_template: "{{ states.light.light.eds_sengelampe.attributes.brightness == 206 and states.light.light.eds_sengelampe.attributes.rgb_color == (50, 0, 0) }}"
+      value_template: "{{ states.light.eds_sengelampe.attributes.brightness == 206 and states.light.eds_sengelampe.attributes.rgb_color == (50, 0, 0) }}"
 
     action:
       - service: light.turn_on
@@ -94,7 +103,7 @@ automation:
 
 # Bettes sengebord lys 
 
-  - alias: "Turn down lights at 19:45"
+  - alias: "Turn on lights at 19:45"
     initial_state: True
     trigger:
       platform: time

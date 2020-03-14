@@ -7,15 +7,23 @@ homeassistant:
 
     sensor.Temperature_littlehall:
       icon: mdi:temperature-celsius       
-      friendly_name: Temperatur i stuen
+      friendly_name: Temperatur i den lille gang
 
     sensor.Humidity_littlehall:
       icon: mdi:water-percent
-      friendly_name: Fugt i stuen
+      friendly_name: Fugt i den lille gang
+
+    sensor.temperature_entrance:
+      icon: mdi:temperature-celsius
+      friendly_name: Temperatur ved hoveddøren
+
+    sensor.humidity_entrance:
+      icon: mdi:water-percent
+      friendly_name: Fugt ved hoveddøren
 
     switch.littlehall_lamp:
       icon: mdi:lightbulb
-      friendly_name: Lampe i lille gang
+      friendly_name: Lampe i den lille gang
 
 
 ##########
@@ -35,6 +43,19 @@ sensor:
     qos: 0
     unit_of_measurement: "°C"
 
+  - platform: mqtt
+    name: "Temperature_entrance"
+    state_topic: "esp_entrance/dht_entrance/Temperature"
+    qos: 0
+    unit_of_measurement: "°C"
+
+  - platform: mqtt
+    name: "Humidity_entrance"
+    state_topic: "esp_entrance/dht_entrance/Humidity"
+    qos: 0
+    unit_of_measurement: "°C"
+
+
 
 ##########
 # Switch #
@@ -44,6 +65,16 @@ switch:
     name: "littlehall_lamp"
     state_topic: "esp_littlehall/lamp_littlehall/gpio/12"
     command_topic: "esp_littlehall/lamp_littlehall/gpio/12"
+    payload_on: "1"
+    payload_off: "0"
+    optimistic: false
+    qos: 0
+    retain: true
+
+  - platform: mqtt
+    name: "Reset Wifi/Ikea/Conbee"
+    state_topic: "esp_entrance/reset_hall/gpio/2"
+    command_topic: "esp_littlehall/reset_hall/gpio/2"
     payload_on: "1"
     payload_off: "0"
     optimistic: false
@@ -62,7 +93,7 @@ automation:
     trigger:
       platform: numeric_state
       entity_id: sensor.lux_livingroom
-      below: 120
+      above: 120
     action:
       - service: homeassistant.turn_on
         entity_id:
@@ -77,11 +108,42 @@ automation:
     trigger:
       platform: numeric_state
       entity_id: sensor.lux_livingroom
-      above: 120
+      above: 140
     action:
       - service: homeassistant.turn_off
         entity_id:
           - switch.littlehall_lamp
+      - service: light.turn_off
+        data:
+          entity_id:
+            - light.gangen
+          brightness: 140
+
+
+  - alias: Tænd lyset ved hoveddøren
+    trigger:
+      platform: numeric_state
+      entity_id: sensor.lux_livingroom
+      below: 120
+    action:
+      - service: homeassistant.turn_on
+        entity_id:
+          - light.gangen
+      - service: light.turn_on
+        data:
+          entity_id:
+            - light.gangen
+          brightness: 140
+
+  - alias: Sluk lyset i gangene
+    trigger:
+      platform: numeric_state
+      entity_id: sensor.lux_livingroom
+      above: 120
+    action:
+      - service: homeassistant.turn_off
+        entity_id:
+          - light.gangen
       - service: light.turn_off
         data:
           entity_id:
